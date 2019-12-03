@@ -1,0 +1,22 @@
+import xlrd
+data = xlrd.open_workbook('test.xlsx')
+data.sheets() # 获取excel工作表
+# table = data.sheet()[2] # 通过索引获取excel工作表
+table = data.sheet_by_name('Sheet1') # 通过工作表名获取excel工作表
+hang = table.nrows # 获取行数
+lie = table.ncols # 获取列数
+print(hang,lie)
+
+# 读取单元格
+name_value = table.cell(1,1).value # 也是返回单元格的值
+print(name_value)
+
+# 写入单元格
+# 格式为： table.put_cell(row,col,ctype,xf=0)
+# row:行标
+# col:列表
+# ctype：类型，包括0 empty，1 string，2 number，3 date，4 boolean，5 error
+# xf： 扩展的格式化，默认为0，非必要参数
+table.put_cell(9,9,2,23,0)
+a = table.cell(9,9).value
+print(a)
